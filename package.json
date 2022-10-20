@@ -1,0 +1,26 @@
+{
+  "name": "cathouse",
+  "version": "1.0.0",
+  "description": "Raspberry pi controlled cat shed.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rastoelias/cathouse.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rastoelias/cathouse/issues"
+  },
+  "homepage": "https://github.com/rastoelias/cathouse#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-dht-sensor": "^0.4.3",
+    "node-rtsp-stream": "^0.0.9",
+    "pigpio": "^3.3.1",
+    "socket.io": "^4.5.3"
+  }
+}
