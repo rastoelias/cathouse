@@ -14,6 +14,12 @@ Put following code, save and reboot:
 > During development, open the required file and comment out the required line
 
 ## Development
+
+Pushing changes to github
+```
+git push -u origin main
+```
+
 ### Video network streaming
 To start streaming run:
 ```
