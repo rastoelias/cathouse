@@ -3,86 +3,197 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <title>CatHouse 1.0</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <style>
-      body { margin: 0; padding-bottom: 3rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles.css">
 
-      #form { background: rgba(0, 0, 0, 0.15); padding: 0.25rem; position: fixed; bottom: 0; left: 0; right: 0; display: flex; height: 3rem; box-sizing: border-box; backdrop-filter: blur(10px); }
-      #input { border: none; padding: 0 1rem; flex-grow: 1; border-radius: 2rem; margin: 0.25rem; }
-      #input:focus { outline: none; }
-      #form > button { background: #333; border: none; padding: 0 1rem; margin: 0.25rem; border-radius: 3px; outline: none; color: #fff; }
-
-      #messages { list-style-type: none; margin: 0; padding: 0; }
-      #messages > li { padding: 0.5rem 1rem; }
-      #messages > li:nth-child(odd) { background: #efefef; }
-    </style>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
   </head>
-  <body>
-    <div class="container fluid">
-      <canvas id="canvas"></canvas>
-      <div>Temperature: <span id="temperature">-</span>°C</div>
-      <div>Humidity: <span id="humidity">-</span>%</div>
-      <div>Proximity: <span id="proximity">-</span></div>
-      <ul id="messages"></ul>
-      <form id="form" action="">
-        <input id="input" autocomplete="off" /><button>Send</button>
-      </form>
+  <body class="d-md-flex">
+    <!-- spacer for large screen -->
+    <div class="screen-spacer"></div>
+
+    <!-- Main content -->
+    <main class="d-flex flex-column-reverse flex-sm-row">
+
+      <!-- Widgets -->
+      <div class="text-white p-2">
+
+        <!-- Temperature and Humidity -->
+        <div class="d-flex flex-sm-column">
+
+          <!-- Temperature -->
+          <div class="widget d-flex flex-grow-1 align-items-center me-2 me-sm-0 mb-sm-2 p-3 ps-2 lh-1">
+  
+            <!-- Icon -->
+            <div>
+              <svg id="temperatureIcon" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-thermometer-half text-secondary" viewBox="0 0 16 16">
+                <path d="M9.5 12.5a1.5 1.5 0 1 1-2-1.415V6.5a.5.5 0 0 1 1 0v4.585a1.5 1.5 0 0 1 1 1.415z"/>
+                <path d="M5.5 2.5a2.5 2.5 0 0 1 5 0v7.55a3.5 3.5 0 1 1-5 0V2.5zM8 1a1.5 1.5 0 0 0-1.5 1.5v7.987l-.167.15a2.5 2.5 0 1 0 3.333 0l-.166-.15V2.5A1.5 1.5 0 0 0 8 1z"/>
+              </svg>
+            </div>
+  
+            <!-- Content -->
+            <div>
+  
+              <!-- Title -->
+              <small class="text-muted">Temperature</small>
+  
+              <!-- Data -->
+              <div class="text-nowrap">
+                <span id="temperature" class="display-6 fw-bold">00.0</span>
+                <span class="fw-lighter"> °C</span>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Humidity -->
+          <div class="widget d-flex flex-grow-1 align-items-center p-3 ps-2 lh-1">
+            
+            <!-- Icon -->
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-droplet text-primary" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M7.21.8C7.69.295 8 0 8 0c.109.363.234.708.371 1.038.812 1.946 2.073 3.35 3.197 4.6C12.878 7.096 14 8.345 14 10a6 6 0 0 1-12 0C2 6.668 5.58 2.517 7.21.8zm.413 1.021A31.25 31.25 0 0 0 5.794 3.99c-.726.95-1.436 2.008-1.96 3.07C3.304 8.133 3 9.138 3 10a5 5 0 0 0 10 0c0-1.201-.796-2.157-2.181-3.7l-.03-.032C9.75 5.11 8.5 3.72 7.623 1.82z"/>
+                <path fill-rule="evenodd" d="M4.553 7.776c.82-1.641 1.717-2.753 2.093-3.13l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448z"/>
+              </svg>
+            </div>
+  
+            <!-- Content  -->
+            <div>
+  
+              <!-- Title -->
+              <small class="text-secondary">Humidity</small>
+  
+              <!-- Data -->
+              <div class="text-nowrap">
+                <span id="humidity" class="display-6 fw-bold">00</span>
+                <span class="fw-lighter"> %</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Other -->
+        <div class="widget mt-2 p-3">
+
+          <!-- Distance -->
+          <div class="d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" id="distanceRelayStatusIcon" width="20" height="20" fill="currentColor" class="bi bi-dot text-muted" viewBox="0 0 16 16">
+              <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+            </svg>
+            <small>
+              <span class="text-secondary">Distance:</span>
+              <span id="distance" class="fw-bold">00</span>
+              <span class="fw-lighter">cm</span>
+            </small>
+          </div>
+
+          <!-- Heater -->
+          <div class="d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" id="heaterRelayStatusIcon" width="20" height="20" fill="currentColor" class="bi bi-dot text-muted" viewBox="0 0 16 16">
+              <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+            </svg>
+            <small>
+              <span class="text-secondary">Heater</span>
+              <svg xmlns="http://www.w3.org/2000/svg" id="heaterRelayFireIcon" width="12" height="12" fill="currentColor" class="bi bi-fire text-muted" viewBox="0 0 16 16">
+                <path d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16Zm0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15Z"/>
+              </svg>
+            </small>
+          </div>
+        </div>
+
+        <!-- Reboot -->
+        <div class="widget mt-2 p-3">
+          <button id="rebootBtn" class="btn btn-sm btn-outline-danger">Reboot</button>
+        </div>
+      </div>
+
+      <!-- Stream -->
+      <div class="p-2 m-2 mb-0 ms-sm-0 mb-sm-2 position-relative stream flex-grow-1">
+
+        <!-- Brightness -->
+        <div class="position-absolute start-50 translate-middle-x">
+          <div class="btn-group brightness mt-3" role="group" aria-label="Basic example">
+            <!-- Decrease -->
+            <button type="button" id="brightnessDecrease" class="btn btn-link text-white lh-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z"/>
+              </svg>
+            </button>
+            <!-- Brightness level -->
+            <button type="button" class="btn btn-link text-decoration-none d-flex align-items-center justify-content-center level px-1" disabled>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-brightness-high text-white" viewBox="0 0 16 16">
+                <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+              </svg>
+              <div class="small text-white fw-light ms-1 lh-1"><span id="brightnessPerc">0</span>%</div>
+            </button>
+            <!-- Increase -->
+            <button type="button" id="brightnessIncrease" class="btn btn-link text-white lh-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Snapshot -->
+        <button type="button" id="makeSnapshot" class="btn btn-link text-white lh-1 position-absolute end-0 mt-3 me-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-record-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+          </svg>
+        </button>
+        <!-- Last snapshot -->
+        <div id="lastSnapshot" class="text-white lh-1 position-absolute p-1 bottom-0 mb-4 end-0 me-4 rounded" data-bs-toggle="modal" data-bs-target="#preview">
+        </div>
+
+        <!-- Stream -->
+        <canvas id="canvas" width="900"></canvas>
+      </div>
+    </main>
+
+    <!-- spacer for large screen -->
+    <div class="screen-spacer"></div>
+
+    <!-- Preview -->
+    <div class="modal fade" id="preview" tabindex="-1" aria-labelledby="previewLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body pb-1">
+            <div id="carouselSnap" class="carousel slide" data-bs-ride="false" data-bs-touch="false">
+              <div class="carousel-indicators"></div>
+              <div class="carousel-inner"></div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselSnap" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselSnap" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+          <div class="modal-footer p-0 pb-2 m-auto">
+            <button id="deleteAndReload" type="button" class="btn btn-sm btn-link text-decoration-none d-flex align-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash text-danger" viewBox="0 0 16 16">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+              </svg>
+              <small class="text-white-50 fw-light ms-1">Delete all <span class="deleteCount fw-bold">X</span> and reload</small>
+            </button>
+            <input type="hidden" name="deleteJSON" id="deleteJSON" value="" />
+          </div>
+        </div>
+      </div>
     </div>
+
     <script src="/socket.io/socket.io.js"></script>
-    <script>
-      var socket = io();
-
-      const temperature = document.getElementById('temperature')
-      const humidity = document.getElementById('humidity')
-      const proximity = document.getElementById('proximity')
-    
-      var messages = document.getElementById('messages');
-      var form = document.getElementById('form');
-      var input = document.getElementById('input');
-    
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        if (input.value) {
-          socket.emit('chat message', input.value);
-          input.value = '';
-        }
-      });
-    
-      socket.on('chat message', function(msg) {
-        var item = document.createElement('li');
-        item.textContent = msg;
-        messages.appendChild(item);
-        window.scrollTo(0, document.body.scrollHeight);
-      });
-
-      socket.on('temperature', (value) => {
-        temperature.innerHTML = value
-      })
-
-      socket.on('humidity', (value) => {
-        humidity.innerHTML = value
-      })
-
-      socket.on('proximity', (value) => {
-        proximity.innerHTML = value
-      })
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <script type="text/javascript" src="./jsmpeg.min.js"></script>
-    <script type="text/javascript">
-      player = new JSMpeg.Player('ws://192.168.0.29:9999', {
-        canvas: document.getElementById('canvas') // Canvas should be a canvas DOM element
-      })	
-    </script>
-  </body>
-</html>
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Socket.IO chat</title>
-  </head>
-  <body>
+    <script src="./main.js"></script>
   </body>
 </html>

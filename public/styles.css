@@ -1,0 +1,118 @@
+body {
+  background-color: #221f2e;
+}
+main {
+  max-width: 900px;
+  margin: auto;
+}
+
+.widget {
+  background-color: #2e2b3f;
+}
+
+.stream {
+  background-color: #2e2b3f;
+}
+
+#canvas {
+  width: 100%;
+}
+
+/* Brightness */
+.btn-group.brightness {
+  background-color: rgba(255,255,255,0.1);
+}
+.brightness .level {
+  width: 70px;
+}
+
+/* Snapshot */
+button#makeSnapshot {
+  background-color: rgba(255,255,255,0.1);
+}
+#lastSnapshot {
+  background-color: rgba(255,255,255,0.1);
+  cursor: pointer;
+}
+#lastSnapshot .date{
+  font-size: 9px;
+  opacity: .6;
+  padding-top: 4px;
+  text-align: center;
+}
+
+/* Other */
+.iconWrapper {
+  width: 18px;
+  height: 18px;
+  overflow: hidden;
+}
+
+svg.text-success {
+  fill: greenyellow;
+}
+
+#heaterRelayFireIcon.text-warning {
+  fill: orange;
+}
+
+#temperatureIcon.text-info {
+  fill: lightskyblue;
+}
+
+#temperatureIcon.text-warning {
+  fill: orange;
+}
+
+#temperatureIcon.text-danger {
+  fill: red;
+}
+.modal-content {
+  background-color: #2e2b3f;
+  max-width: 380px;
+  margin: auto;
+}
+.modal-footer {
+  border-top: none;
+  text-align: center;
+  font-size: 12px;
+}
+
+#rebootBtn:hover {
+  color: rgb(220, 53, 69);
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid rgb(220, 53, 69);
+}
+
+/* Media queries */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .widget {
+    width: 175px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .widget {
+    width: 190px;
+  }
+  .modal-content {
+    max-width: inherit;
+  }
+  .modal-dialog {
+    max-width: 700px;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  body {
+    position: relative;
+    height: 100vh;
+  }
+  .modal-dialog {
+    max-width: 800px;
+  }
+}

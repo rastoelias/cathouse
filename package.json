@@ -17,10 +17,18 @@
   },
   "homepage": "https://github.com/rastoelias/cathouse#readme",
   "dependencies": {
+    "aht20-sensor": "^0.1.1",
     "express": "^4.18.2",
+    "glob": "^8.0.3",
+    "i2c-bus": "^5.2.2",
+    "megabit": "^1.0.1",
+    "node-cron": "^3.0.2",
     "node-dht-sensor": "^0.4.3",
     "node-rtsp-stream": "^0.0.9",
+    "onoff": "^6.0.3",
     "pigpio": "^3.3.1",
-    "socket.io": "^4.5.3"
+    "shelljs": "^0.8.5",
+    "socket.io": "^4.5.3",
+    "vl53l0x": "^2.0.0"
   }
 }

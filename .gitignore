@@ -3,8 +3,13 @@
 # dependencies
 node_modules
 
+# snapshots
+public/snapshots/*
+
 # misc
 .DS_Store
 ._.*
+._*
+.smbdelete*
 
 npm-debug.log*
