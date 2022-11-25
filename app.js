@@ -254,8 +254,9 @@ io.on('connection', (socket) => {
     reboot()
   })
 
-  // Reboot every day at 01:00
-  cron.schedule('0 1 * * *', () => {
+  // Reboot every day at 01:00: 0 1 * * *
+  // Reboot every 2 hours: 0 */2 * * *
+  cron.schedule('0 */2 * * *', () => {
     io.emit('rebooting')
     reboot()
   })
